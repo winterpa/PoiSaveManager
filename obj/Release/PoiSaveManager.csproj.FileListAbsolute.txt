@@ -1,0 +1,8 @@
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\bin\Release\PoiSaveManager.exe.config
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\bin\Release\PoiSaveManager.exe
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\bin\Release\PoiSaveManager.pdb
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\obj\Release\PoiSaveManager.Form1.resources
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\obj\Release\PoiSaveManager.Properties.Resources.resources
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\obj\Release\PoiSaveManager.csproj.GenerateResource.Cache
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\obj\Release\PoiSaveManager.exe
+E:\Documents\VisualStudioProjects\PoiDepatcher\PoiSaveManager\obj\Release\PoiSaveManager.pdb
