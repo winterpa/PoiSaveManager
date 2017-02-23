@@ -45,6 +45,7 @@ namespace PoiSaveManager
             this.ClearSave1Button = new System.Windows.Forms.Button();
             this.ClearSave0Button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RenameSaveButton = new System.Windows.Forms.Button();
             this.ClearBackupLocationButton = new System.Windows.Forms.Button();
             this.DeleteSaveButton = new System.Windows.Forms.Button();
             this.RefreshListBoxButton = new System.Windows.Forms.Button();
@@ -56,7 +57,7 @@ namespace PoiSaveManager
             this.BackupSaveLocationLabel = new System.Windows.Forms.Label();
             this.BackupSaveLocationButton = new System.Windows.Forms.Button();
             this.ReplaceGameSavesButton = new System.Windows.Forms.Button();
-            this.ReadOnlySaveButton = new System.Windows.Forms.Button();
+            this.GameSaveLocationButton = new System.Windows.Forms.Button();
             this.BackupGameSavesButton = new System.Windows.Forms.Button();
             this.MainGameSaveGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -93,7 +94,7 @@ namespace PoiSaveManager
             this.Save0Label.Name = "Save0Label";
             this.Save0Label.Size = new System.Drawing.Size(44, 13);
             this.Save0Label.TabIndex = 2;
-            this.Save0Label.Text = "Save 0:";
+            this.Save0Label.Text = "Save 1:";
             // 
             // Save1Label
             // 
@@ -102,7 +103,7 @@ namespace PoiSaveManager
             this.Save1Label.Name = "Save1Label";
             this.Save1Label.Size = new System.Drawing.Size(44, 13);
             this.Save1Label.TabIndex = 3;
-            this.Save1Label.Text = "Save 1:";
+            this.Save1Label.Text = "Save 2:";
             // 
             // Save2Label
             // 
@@ -111,7 +112,7 @@ namespace PoiSaveManager
             this.Save2Label.Name = "Save2Label";
             this.Save2Label.Size = new System.Drawing.Size(44, 13);
             this.Save2Label.TabIndex = 4;
-            this.Save2Label.Text = "Save 2:";
+            this.Save2Label.Text = "Save 3:";
             // 
             // MoveSave1Button
             // 
@@ -196,6 +197,7 @@ namespace PoiSaveManager
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.RenameSaveButton);
             this.groupBox1.Controls.Add(this.ClearBackupLocationButton);
             this.groupBox1.Controls.Add(this.DeleteSaveButton);
             this.groupBox1.Controls.Add(this.RefreshListBoxButton);
@@ -212,6 +214,16 @@ namespace PoiSaveManager
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Backup Saves";
+            // 
+            // RenameSaveButton
+            // 
+            this.RenameSaveButton.Location = new System.Drawing.Point(280, 91);
+            this.RenameSaveButton.Name = "RenameSaveButton";
+            this.RenameSaveButton.Size = new System.Drawing.Size(88, 23);
+            this.RenameSaveButton.TabIndex = 16;
+            this.RenameSaveButton.Text = "Rename Save";
+            this.RenameSaveButton.UseVisualStyleBackColor = true;
+            this.RenameSaveButton.Click += new System.EventHandler(this.RenameSaveButton_Click);
             // 
             // ClearBackupLocationButton
             // 
@@ -257,7 +269,7 @@ namespace PoiSaveManager
             this.SetSave1Button.Name = "SetSave1Button";
             this.SetSave1Button.Size = new System.Drawing.Size(75, 23);
             this.SetSave1Button.TabIndex = 6;
-            this.SetSave1Button.Text = "Set Save 1";
+            this.SetSave1Button.Text = "Set Save 2";
             this.SetSave1Button.UseVisualStyleBackColor = true;
             this.SetSave1Button.Click += new System.EventHandler(this.SetSave1Button_Click);
             // 
@@ -267,7 +279,7 @@ namespace PoiSaveManager
             this.SetSave2Button.Name = "SetSave2Button";
             this.SetSave2Button.Size = new System.Drawing.Size(75, 23);
             this.SetSave2Button.TabIndex = 5;
-            this.SetSave2Button.Text = "Set Save 2";
+            this.SetSave2Button.Text = "Set Save 3";
             this.SetSave2Button.UseVisualStyleBackColor = true;
             this.SetSave2Button.Click += new System.EventHandler(this.SetSave2Button_Click);
             // 
@@ -277,7 +289,7 @@ namespace PoiSaveManager
             this.SetSave0Button.Name = "SetSave0Button";
             this.SetSave0Button.Size = new System.Drawing.Size(75, 23);
             this.SetSave0Button.TabIndex = 4;
-            this.SetSave0Button.Text = "Set Save 0";
+            this.SetSave0Button.Text = "Set Save 1";
             this.SetSave0Button.UseVisualStyleBackColor = true;
             this.SetSave0Button.Click += new System.EventHandler(this.SetSave0Button_Click);
             // 
@@ -318,15 +330,15 @@ namespace PoiSaveManager
             this.ReplaceGameSavesButton.UseVisualStyleBackColor = true;
             this.ReplaceGameSavesButton.Click += new System.EventHandler(this.ReplaceGameSavesButton_Click);
             // 
-            // ReadOnlySaveButton
+            // GameSaveLocationButton
             // 
-            this.ReadOnlySaveButton.Enabled = false;
-            this.ReadOnlySaveButton.Location = new System.Drawing.Point(12, 136);
-            this.ReadOnlySaveButton.Name = "ReadOnlySaveButton";
-            this.ReadOnlySaveButton.Size = new System.Drawing.Size(157, 23);
-            this.ReadOnlySaveButton.TabIndex = 11;
-            this.ReadOnlySaveButton.Text = "Mark Saves Read Only";
-            this.ReadOnlySaveButton.UseVisualStyleBackColor = true;
+            this.GameSaveLocationButton.Location = new System.Drawing.Point(12, 136);
+            this.GameSaveLocationButton.Name = "GameSaveLocationButton";
+            this.GameSaveLocationButton.Size = new System.Drawing.Size(157, 23);
+            this.GameSaveLocationButton.TabIndex = 11;
+            this.GameSaveLocationButton.Text = "Open Game Save Location";
+            this.GameSaveLocationButton.UseVisualStyleBackColor = true;
+            this.GameSaveLocationButton.Click += new System.EventHandler(this.GameSaveLocationButton_Click);
             // 
             // BackupGameSavesButton
             // 
@@ -345,7 +357,7 @@ namespace PoiSaveManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 169);
             this.Controls.Add(this.BackupGameSavesButton);
-            this.Controls.Add(this.ReadOnlySaveButton);
+            this.Controls.Add(this.GameSaveLocationButton);
             this.Controls.Add(this.ReplaceGameSavesButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MainGameSaveGroupBox);
@@ -383,7 +395,7 @@ namespace PoiSaveManager
         private System.Windows.Forms.Button SetSave1Button;
         private System.Windows.Forms.Button SetSave2Button;
         private System.Windows.Forms.Button SetSave0Button;
-        private System.Windows.Forms.Button ReadOnlySaveButton;
+        private System.Windows.Forms.Button GameSaveLocationButton;
         private System.Windows.Forms.ListBox BackupSavesListBox;
         private System.Windows.Forms.Button BackupGameSavesButton;
         private System.Windows.Forms.Button RefreshListBoxButton;
@@ -392,6 +404,7 @@ namespace PoiSaveManager
         private Button ClearSave2Button;
         private Button ClearSave1Button;
         private Button ClearSave0Button;
+        private Button RenameSaveButton;
     }
 }
 

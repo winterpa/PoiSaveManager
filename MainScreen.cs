@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,13 +27,13 @@ namespace PoiSaveManager
 
         public Form1()
         {
-            gameSaves = new string[3];
-            originalSaves = new string[3];
+            amountOfSaves = 3;
+
+            gameSaves = new string[amountOfSaves];
+            originalSaves = new string[amountOfSaves];
             backupSaveLocation = "";
             originalSaveLocation = @"C:\Users\" + System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1] + @"\AppData\LocalLow\PolyKid\Poi\";
             originalSaveName = "poi-save-X.dat";
-
-            amountOfSaves = 3;
 
             InitializeComponent();
 
@@ -91,6 +92,14 @@ namespace PoiSaveManager
             if (String.IsNullOrWhiteSpace(backupSaveLocation))
             {
                 MessageBox.Show("Please select a backup location first!");
+                return;
+            }
+
+            if(!Directory.Exists(BackupSaveLocationTextBox.Text))
+            {
+                BackupSaveLocationTextBox.Text = String.Empty;
+                Properties.Settings.Default["BackupLocation"] = String.Empty;
+                Properties.Settings.Default.Save();
                 return;
             }
 
@@ -205,18 +214,21 @@ namespace PoiSaveManager
                 MessageBox.Show("Please select a backup location first!");
                 return;
             }
-
             string saveName = "";
             string originalName = "";
-            for (int i = 0; i < amountOfSaves; i++)
+            for (int k = 0; k < amountOfSaves; k++)
             {
-                originalName = originalSaveLocation + originalSaveName.Replace('X', Char.Parse(i.ToString()));
-                if (File.Exists(originalName))
+                if (!String.IsNullOrWhiteSpace(gameSaves[k]))
                 {
-                    saveName = backupSaveLocation + GetFormattedDate() + "." + originalSaveName.Replace('X', Char.Parse(i.ToString()));
-                    File.Copy(originalName, saveName);
+                    originalName = originalSaveLocation + originalSaveName.Replace('X', Char.Parse(k.ToString()));
+                    if (File.Exists(originalName))
+                    {
+                        saveName = backupSaveLocation + GetFormattedDate() + "." + originalSaveName.Replace('X', Char.Parse(k.ToString()));
+                        File.Copy(originalName, saveName);
+                    }
                 }
             }
+                
 
             RefreshListBox();
         }
@@ -343,6 +355,25 @@ namespace PoiSaveManager
         {
             GameSave2TextBox.Text = string.Empty;
             gameSaves[2] = string.Empty;
+        }
+
+        private void RenameSaveButton_Click(object sender, EventArgs e)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Please give a name to your save file.\n", 
+                "Save Name", "", -1, -1);
+
+            if (!String.IsNullOrWhiteSpace(input))
+            {
+                File.Copy(backupSaveLocation + BackupSavesListBox.SelectedItem.ToString(), backupSaveLocation + input + ".dat");
+                File.Delete(backupSaveLocation + BackupSavesListBox.SelectedItem.ToString());
+            }
+
+            RefreshListBox();
+        }
+
+        private void GameSaveLocationButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", originalSaveLocation);
         }
     }
 }
